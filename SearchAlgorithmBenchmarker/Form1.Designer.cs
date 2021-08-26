@@ -28,10 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            //this.components = new System.ComponentModel.Container();
-            //this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            //this.ClientSize = new System.Drawing.Size(800, 450);
-            //this.Text = "Form1";
             this.pnlButtonContainer = new System.Windows.Forms.FlowLayoutPanel();
             this.cmdGenerate = new System.Windows.Forms.Button();
             this.cmdSort = new System.Windows.Forms.Button();
@@ -66,6 +62,11 @@
             this.txtOutput2 = new System.Windows.Forms.RichTextBox();
             this.pbTaskProgress = new System.Windows.Forms.ProgressBar();
             this.cbAdditiveArray = new System.Windows.Forms.CheckBox();
+            this.topMenu = new System.Windows.Forms.MenuStrip();
+            this.miSetting = new System.Windows.Forms.ToolStripMenuItem();
+            this.msiConfig = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutSearchAlgoBenchmarkerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlButtonContainer.SuspendLayout();
             this.pnlApp.SuspendLayout();
             this.pnlInput2.SuspendLayout();
@@ -76,6 +77,7 @@
             this.pnlSortTab.SuspendLayout();
             this.pnlButtonHolder.SuspendLayout();
             this.pnlInputHolder.SuspendLayout();
+            this.topMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlButtonContainer
@@ -223,7 +225,7 @@
             // 
             // cmdReset
             // 
-            this.cmdReset.Location = new System.Drawing.Point(230, 549);
+            this.cmdReset.Location = new System.Drawing.Point(267, 587);
             this.cmdReset.Name = "cmdReset";
             this.cmdReset.Size = new System.Drawing.Size(118, 39);
             this.cmdReset.TabIndex = 3;
@@ -235,7 +237,7 @@
             // 
             this.tbBenchmarkSelector.Controls.Add(this.tabPage1);
             this.tbBenchmarkSelector.Controls.Add(this.tabPage2);
-            this.tbBenchmarkSelector.Location = new System.Drawing.Point(93, 0);
+            this.tbBenchmarkSelector.Location = new System.Drawing.Point(130, 38);
             this.tbBenchmarkSelector.Name = "tbBenchmarkSelector";
             this.tbBenchmarkSelector.SelectedIndex = 0;
             this.tbBenchmarkSelector.Size = new System.Drawing.Size(434, 482);
@@ -394,7 +396,7 @@
             // 
             // pbTaskProgress
             // 
-            this.pbTaskProgress.Location = new System.Drawing.Point(193, 507);
+            this.pbTaskProgress.Location = new System.Drawing.Point(230, 545);
             this.pbTaskProgress.Maximum = 10000;
             this.pbTaskProgress.Name = "pbTaskProgress";
             this.pbTaskProgress.Size = new System.Drawing.Size(221, 23);
@@ -404,24 +406,66 @@
             // cbAdditiveArray
             // 
             this.cbAdditiveArray.AutoSize = true;
-            this.cbAdditiveArray.Location = new System.Drawing.Point(374, 484);
+            this.cbAdditiveArray.Location = new System.Drawing.Point(411, 522);
             this.cbAdditiveArray.Name = "cbAdditiveArray";
             this.cbAdditiveArray.Size = new System.Drawing.Size(149, 17);
             this.cbAdditiveArray.TabIndex = 5;
             this.cbAdditiveArray.Text = "Numbers for additive array";
             this.cbAdditiveArray.UseVisualStyleBackColor = true;
             // 
+            // topMenu
+            // 
+            this.topMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.miSetting,
+            this.aboutToolStripMenuItem});
+            this.topMenu.Location = new System.Drawing.Point(0, 0);
+            this.topMenu.Name = "topMenu";
+            this.topMenu.Size = new System.Drawing.Size(671, 24);
+            this.topMenu.TabIndex = 10;
+            this.topMenu.Text = "menuStrip1";
+            // 
+            // miSetting
+            // 
+            this.miSetting.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.msiConfig});
+            this.miSetting.Name = "miSetting";
+            this.miSetting.Size = new System.Drawing.Size(61, 20);
+            this.miSetting.Text = "Settings";
+            // 
+            // msiConfig
+            // 
+            this.msiConfig.Name = "msiConfig";
+            this.msiConfig.Size = new System.Drawing.Size(193, 22);
+            this.msiConfig.Text = "Configuration Settings";
+            this.msiConfig.Click += new System.EventHandler(this.msiConfig_Click);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutSearchAlgoBenchmarkerToolStripMenuItem});
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.aboutToolStripMenuItem.Text = "Help";
+            // 
+            // aboutSearchAlgoBenchmarkerToolStripMenuItem
+            // 
+            this.aboutSearchAlgoBenchmarkerToolStripMenuItem.Name = "aboutSearchAlgoBenchmarkerToolStripMenuItem";
+            this.aboutSearchAlgoBenchmarkerToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.aboutSearchAlgoBenchmarkerToolStripMenuItem.Text = "About AlgoBenchmarker";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(612, 587);
+            this.ClientSize = new System.Drawing.Size(671, 661);
             this.Controls.Add(this.pbTaskProgress);
             this.Controls.Add(this.tbBenchmarkSelector);
             this.Controls.Add(this.cmdReset);
             this.Controls.Add(this.cbAdditiveArray);
+            this.Controls.Add(this.topMenu);
+            this.MainMenuStrip = this.topMenu;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "AlgoBenchmarker";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.pnlButtonContainer.ResumeLayout(false);
             this.pnlApp.ResumeLayout(false);
@@ -440,6 +484,8 @@
             this.pnlButtonHolder.ResumeLayout(false);
             this.pnlInputHolder.ResumeLayout(false);
             this.pnlInputHolder.PerformLayout();
+            this.topMenu.ResumeLayout(false);
+            this.topMenu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -482,6 +528,11 @@
         private System.Windows.Forms.Button cmdClear2;
         private System.Windows.Forms.ProgressBar pbTaskProgress;
         private System.Windows.Forms.CheckBox cbAdditiveArray;
+        private System.Windows.Forms.MenuStrip topMenu;
+        private System.Windows.Forms.ToolStripMenuItem miSetting;
+        private System.Windows.Forms.ToolStripMenuItem msiConfig;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutSearchAlgoBenchmarkerToolStripMenuItem;
     }
 }
 

@@ -9,13 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using Utils;
+using System.Configuration;
 
 namespace SearchAlgorithmBenchmarker
 {
 
     public partial class Form1 : Form
     {
-        private const string _saveFileDirectory = @".\..\..\..\Test Results";
+        // private const string _saveFileDirectory = @".\..\..\..\Test Results";
+        // private string _saveFileDirectory = 
         private int[] _values;
 
         private Dictionary<string, RichTextBox> _outputTextBoxes;
@@ -29,6 +31,12 @@ namespace SearchAlgorithmBenchmarker
             _outputTextBoxes = new Dictionary<string, RichTextBox>();
             _outputTextBoxes.Add(tbBenchmarkSelector.TabPages[0].Name, txtOutput);
             _outputTextBoxes.Add(tbBenchmarkSelector.TabPages[1].Name, txtOutput2);
+
+            // set font and colour for text displays
+            txtOutput.Font = new Font(txtOutput.Font.Name, Convert.ToSingle(ConfigurationManager.AppSettings.Get("ReadoutFontSize")), txtOutput.Font.Style);
+            txtOutput.ForeColor = Color.FromArgb(Convert.ToInt32(ConfigurationManager.AppSettings.Get("ReadoutFontColour").Substring(1), 16));
+            txtOutput.Font = new Font(txtOutput2.Font.Name, Convert.ToSingle(ConfigurationManager.AppSettings.Get("ReadoutFontSize")), txtOutput2.Font.Style);
+            txtOutput2.ForeColor = Color.FromArgb(Convert.ToInt32(ConfigurationManager.AppSettings.Get("ReadoutFontColour").Substring(1), 16));
         }
 
         private void ReportProgress(ProgressData d)
@@ -523,7 +531,7 @@ namespace SearchAlgorithmBenchmarker
             return await Task.Run(async () =>
             {
                 string fileName = $"tst_srt{DateTime.Today.Day}-{DateTime.Today.Month}-{DateTime.Now.Hour}{DateTime.Now.Minute}{DateTime.Now.Second}.csv";
-                string filePath = Path.Combine(_saveFileDirectory, fileName);
+                string filePath = Path.Combine(ConfigurationManager.AppSettings.Get("ResultOutputDirectory"), fileName);
                 StringBuilder sb = new StringBuilder();
                 sb.Append("Quicksort1 time(ticks),Quicksort2 time(ticks),Heapsort time(ticks)\n");
                 for (int i = 0; i < _numSortTests; i++)
@@ -556,7 +564,7 @@ namespace SearchAlgorithmBenchmarker
             return await Task.Run(async () =>
             {
                 string fileName = $"tst_sch{DateTime.Today.Day}-{DateTime.Today.Month}-{DateTime.Now.Hour}{DateTime.Now.Minute}{DateTime.Now.Second}.csv";
-                string filePath = Path.Combine(_saveFileDirectory, fileName);
+                string filePath = Path.Combine(ConfigurationManager.AppSettings.Get("ResultOutputDirectory"), fileName);
                 int len = _values.Length / 10;
                 StringBuilder sb = new StringBuilder();
                 sb.Append("Recursive search time(ticks),Iterative search time(ticks)\n");
@@ -708,7 +716,7 @@ namespace SearchAlgorithmBenchmarker
             return await Task.Run(async () =>
             {
                 string fileName = $"tst_add-sch{DateTime.Today.Day}-{DateTime.Today.Month}-{DateTime.Now.Hour}{DateTime.Now.Minute}{DateTime.Now.Second}.csv";
-                string filePath = Path.Combine(_saveFileDirectory, fileName);
+                string filePath = Path.Combine(ConfigurationManager.AppSettings.Get("ResultOutputDirectory"), fileName);
                 StringBuilder sb = new StringBuilder();
                 sb.Append("Array size,Avg. recursive search time (ms),Max. recursive search time(ms),Min. recursive search time (ms)\n");
                 for (int c = 0; c < numStatistics; c++)
@@ -748,6 +756,13 @@ namespace SearchAlgorithmBenchmarker
             }
 
             RunAdditiveSearchBenchmarkAsync(progressMonitor, outSize);
+        }
+
+        private void msiConfig_Click(object sender, EventArgs e)
+        {
+            ConfigSettingsWindow frmConf = new ConfigSettingsWindow();
+            frmConf.Activate();
+            frmConf.Visible = true;
         }
     }
 }
