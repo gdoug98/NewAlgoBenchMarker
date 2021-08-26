@@ -20,6 +20,7 @@ namespace SearchAlgorithmBenchmarker
         {
             InitializeComponent();
             txtOutputFile.Text = ConfigurationManager.AppSettings.Get("ResultOutputDirectory");
+            numFontSize.Value = Convert.ToInt32(ConfigurationManager.AppSettings.Get("ReadoutFontSize"));
         }
 
         private void cmdApply_Click(object sender, EventArgs e)
@@ -31,7 +32,7 @@ namespace SearchAlgorithmBenchmarker
             Configuration cfg = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             cfg.AppSettings.Settings["ResultOutputDirectory"].Value = txtOutputFile.Text;
             cfg.AppSettings.Settings["ReadoutFontSize"].Value = fontSize.ToString();
-            cfg.AppSettings.Settings["ReadoutFontColour"].Value = '#' + fontColour.ToArgb().ToString();
+            cfg.AppSettings.Settings["ReadoutFontColour"].Value = '#' + ((uint)fontColour.ToArgb()).ToString("X");
 
             cfg.Save(ConfigurationSaveMode.Modified, true);
 
@@ -69,7 +70,7 @@ namespace SearchAlgorithmBenchmarker
             Configuration cfg = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             cfg.AppSettings.Settings["ResultOutputDirectory"].Value = txtOutputFile.Text;
             cfg.AppSettings.Settings["ReadoutFontSize"].Value = fontSize.ToString();
-            cfg.AppSettings.Settings["ReadoutFontColour"].Value = '#' + fontColour.ToArgb().ToString();
+            cfg.AppSettings.Settings["ReadoutFontColour"].Value = '#' + ((uint)fontColour.ToArgb()).ToString("X");
 
             cfg.Save(ConfigurationSaveMode.Modified);
 
