@@ -32,6 +32,7 @@ namespace SearchAlgorithmBenchmarker
             this.Items.Add(new ColourInfo("Yellow", Color.Yellow));
             this.Items.Add(new ColourInfo("White", Color.White));
             this.Items.Add(new ColourInfo("Custom", Color.White));
+            this.SelectedIndex = 0;
         }
 
         protected void OnDrawItem(object sender, DrawItemEventArgs e)

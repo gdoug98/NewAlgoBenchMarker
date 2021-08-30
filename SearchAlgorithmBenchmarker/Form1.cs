@@ -35,8 +35,10 @@ namespace SearchAlgorithmBenchmarker
             // set font and colour for text displays
             txtOutput.Font = new Font(txtOutput.Font.Name, Convert.ToSingle(ConfigurationManager.AppSettings.Get("ReadoutFontSize")), txtOutput.Font.Style);
             txtOutput.ForeColor = Color.FromArgb(int.Parse(ConfigurationManager.AppSettings.Get("ReadoutFontColour").Substring(1), System.Globalization.NumberStyles.HexNumber));
+            txtOutput.BackColor = Color.FromArgb(int.Parse(ConfigurationManager.AppSettings.Get("ReadoutBGColour").Substring(1), System.Globalization.NumberStyles.HexNumber));
             txtOutput.Font = new Font(txtOutput2.Font.Name, Convert.ToSingle(ConfigurationManager.AppSettings.Get("ReadoutFontSize")), txtOutput2.Font.Style);
             txtOutput2.ForeColor = Color.FromArgb(int.Parse(ConfigurationManager.AppSettings.Get("ReadoutFontColour").Substring(1), System.Globalization.NumberStyles.HexNumber));
+            txtOutput2.BackColor = Color.FromArgb(int.Parse(ConfigurationManager.AppSettings.Get("ReadoutBGColour").Substring(1), System.Globalization.NumberStyles.HexNumber));
         }
 
         private void ReportProgress(ProgressData d)

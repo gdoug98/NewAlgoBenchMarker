@@ -39,6 +39,8 @@
             this.cmdOK = new System.Windows.Forms.Button();
             this.cmdBrowseOutput = new System.Windows.Forms.Button();
             this.dlgOutputDirectory = new System.Windows.Forms.FolderBrowserDialog();
+            this.lblBackColour = new System.Windows.Forms.Label();
+            this.cbBackColour = new SearchAlgorithmBenchmarker.ColourChooser();
             ((System.ComponentModel.ISupportInitialize)(this.numFontSize)).BeginInit();
             this.SuspendLayout();
             // 
@@ -92,7 +94,6 @@
             this.cbFontColour.FormattingEnabled = true;
             this.cbFontColour.Location = new System.Drawing.Point(167, 181);
             this.cbFontColour.Name = "cbFontColour";
-            this.cbFontColour.SelectedItem = null;
             this.cbFontColour.SelectedValue = System.Drawing.Color.White;
             this.cbFontColour.Size = new System.Drawing.Size(121, 21);
             this.cbFontColour.TabIndex = 5;
@@ -128,11 +129,30 @@
             this.cmdBrowseOutput.UseVisualStyleBackColor = true;
             this.cmdBrowseOutput.Click += new System.EventHandler(this.cmdBrowseOutput_Click);
             // 
+            // lblBackColour
+            // 
+            this.lblBackColour.AutoSize = true;
+            this.lblBackColour.Location = new System.Drawing.Point(12, 234);
+            this.lblBackColour.Name = "lblBackColour";
+            this.lblBackColour.Size = new System.Drawing.Size(133, 13);
+            this.lblBackColour.TabIndex = 9;
+            this.lblBackColour.Text = "Display background colour";
+            // 
+            // cbBackColour
+            // 
+            this.cbBackColour.FormattingEnabled = true;
+            this.cbBackColour.Location = new System.Drawing.Point(167, 231);
+            this.cbBackColour.Name = "cbBackColour";
+            this.cbBackColour.Size = new System.Drawing.Size(121, 21);
+            this.cbBackColour.TabIndex = 10;
+            // 
             // ConfigSettingsWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(424, 450);
+            this.Controls.Add(this.cbBackColour);
+            this.Controls.Add(this.lblBackColour);
             this.Controls.Add(this.cmdBrowseOutput);
             this.Controls.Add(this.cmdOK);
             this.Controls.Add(this.cmdApply);
@@ -159,10 +179,13 @@
         private System.Windows.Forms.NumericUpDown numFontSize;
         // private System.Windows.Forms.ComboBox cbFontColour;
         private ColourChooser cbFontColour;
+        private ColourChooser cbBackColour;
+        // private ColourChooser cbBackColour;
         private System.Windows.Forms.ColorDialog dlgFontColour;
         private System.Windows.Forms.Button cmdApply;
         private System.Windows.Forms.Button cmdOK;
         private System.Windows.Forms.Button cmdBrowseOutput;
         private System.Windows.Forms.FolderBrowserDialog dlgOutputDirectory;
+        private System.Windows.Forms.Label lblBackColour;
     }
 }
